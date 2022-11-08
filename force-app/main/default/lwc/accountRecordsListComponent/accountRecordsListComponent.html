@@ -1,0 +1,37 @@
+<template>
+    <lightning-card title="Account List Component">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col"> Account Name </th>
+                    <th scope="col"> Account Phone </th>
+                    <th scope="col"> Account City </th>
+                    <th scope="col"> Delete </th>
+                    <th scope="col"> Edit </th>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={accountList} for:each={accountList} for:item="acc">
+                <tr class="slds-hint-parent" key={acc.Id}>
+                    <th scope="row"> {acc.Name} </th>
+                    <th scope="row"> {acc.Phone} </th>
+                    <th scope="row"> {acc.BillingCity} </th>
+                    <th scope="row"> 
+                        <lightning-button label="Delete" variant="brand" 
+                        data-id={acc.Id}
+                        onclick={deleteRecord}
+                        >
+                        </lightning-button> 
+                    </th>
+                    <th scope="row">
+                        <lightning-button label="Edit" variant="warning"
+                        data-id={acc.Id}
+                        onclick={editRecord}>
+                        </lightning-button>
+                    </th>
+                </tr>
+                </template>
+            </tbody>
+        </table>
+    </lightning-card>
+</template>

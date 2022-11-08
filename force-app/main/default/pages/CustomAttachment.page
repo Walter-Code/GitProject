@@ -1,0 +1,12 @@
+<apex:page title="Custom Attachment" controller="CustomAttachmentController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Attach File">
+                <apex:inputFile value="{!addFile}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

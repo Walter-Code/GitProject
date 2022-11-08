@@ -1,0 +1,39 @@
+<template>
+	<div align="center">
+		<lightning-spinner if:true={showSpinner}  ></lightning-spinner>
+	</div>
+	<div class="changeBackground">
+		<lightning-tabset>
+			<lightning-tab icon-name="custom:custom31" onactive={getSelectedTravelModel}
+				data-name="custom:custom31" >
+			</lightning-tab>
+
+			<lightning-tab icon-name="custom:custom36" onactive={getSelectedTravelModel} 
+			data-name="custom:custom36" class="changecolor">
+			</lightning-tab>
+
+			<lightning-tab  icon-name="action:new_lead" onactive={getSelectedTravelModel} 
+			data-name="action:new_lead">
+
+			</lightning-tab>
+			<lightning-tab icon-name="custom:custom80" onactive={getSelectedTravelModel} 
+			data-name="custom:custom80">
+			</lightning-tab>
+
+			<lightning-tab icon-name="custom:custom20" onactive={getSelectedTravelModel} 
+			data-name="custom:custom20">
+			</lightning-tab>
+
+		</lightning-tabset>
+
+		<div align="center">
+			<lightning-input variant="label-hidden" label="text" placeholder="Choose starting point"
+				class="slds-m-around_large firstInput" value="" onchange={handleFirst} ></lightning-input>
+			<lightning-input variant="label-hidden" label="text" placeholder="Choose destination" 
+			class="slds-m-around_large secondInput" value="" onchange={handleSecond}></lightning-input><br/>
+		</div>
+		<button onclick={searchClick} class="slds-button slds-button_neutral slds-m-around_medium btnstyle">			
+		Search</button>
+		
+	</div>
+</template>

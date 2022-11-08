@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Child Component">
+        <template for:each={theList} for:item="lst">
+            <div key={lst.Id} class="slds-grid slds-gutters" >
+                <img src={lst.src} 
+                class="slds-col slds-size_1-of-2 slds-m-around_large">
+                <div class="slds-col slds-size_1-of-2 slds-m-around_large">
+                    <b>Capital :</b> {lst.capital}<br/>
+                    <b>Continent : </b> {lst.continent}<br/>
+                    <b>Population : </b> {lst.population}
+                    <lightning-input value={lst.id} label="Visited" onchange={checkboxChanged} checked={lst.isChecked} type="checkbox"></lightning-input>
+                </div>
+            </div>
+        </template>
+        <lightning-button label="Submit" class="slds-m-around_large" style="float:center" onclick={submit}></lightning-button>
+    </lightning-card>
+</template>

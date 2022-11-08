@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Account List" class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_2-of-3">
+            <lightning-input class="slds-m-around_medium" label="Show Counts" type="checkbox" checked={isShowCount} onchange={showCount}></lightning-input>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col"> Account Name </th>
+                        <th scope="col" if:true={isShowCount}> Contacts Count </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template if:true={accountModelList.data} for:each={accountModelList.data} for:item="acc" >
+                    <tr class="slds-hint-parent" key={acc.accountObj.Id}>
+                        <th scope="row"> {acc.accountObj.Name} </th>
+                        <th scope="row" if:true={isShowCount}> {acc.contactCount} </th>
+                    </tr>
+                </template>
+                </tbody>
+            </table>
+        </div>
+    </lightning-card>
+</template>

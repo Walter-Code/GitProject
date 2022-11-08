@@ -1,0 +1,49 @@
+<apex:page controller="CopyAttachmentAssignmentV2Controller">
+    <apex:form id="frm">
+        <apex:actionFunction reRender="frm" name="getObject" action="{!getObject}" />
+        <apex:actionFunction reRender="frm" name="getObjectDemo" action="{!getObjectDemo}" />
+    	<apex:pageBlock >
+        	<apex:pageBlockSection title="Select Object">
+            	<apex:selectList size="1" value="{!selectedObject}" onchange="getObject();">
+                    <apex:selectOptions value="{!objects}"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+			<apex:pageBlockTable value="{!attachmentModels}" var="att" rendered="{!isObjectSelected}">
+                <apex:column >
+                	<apex:inputCheckbox value="{!att.isChecked}" />
+                </apex:column>
+            	<apex:column value="{!att.attach.Name}" />
+                <apex:column value="{!att.attach.ContentType}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockSection >
+            	<apex:selectList size="1" value="{!selectedObjectDemo}" onchange="getObjectDemo();" rendered="{!attachmentModels.size > 0}">
+                    <apex:selectOptions value="{!objects}"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!contacts != null}">
+            	<apex:inputText value="{!searchName}" />
+                <apex:commandButton value="Search" action="{!searchRecord}" reRender="models" />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!objModels}" var="objm" rendered="{!contacts != null}" id="models">
+                <apex:column >
+                	<apex:inputCheckbox value="{!objm.isChecked}" />
+                </apex:column>
+            	<apex:column value="{!objm.con.Name}" />
+            </apex:pageBlockTable>
+ 
+           	<apex:pageBlockSection rendered="{!contacts != null}">
+            	<apex:inputText value="{!searchName}" />
+                <apex:commandButton value="Search" action="{!searchRecord}" reRender="models" />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!objModels}" var="objm" rendered="{!contacts != null}">
+                <apex:column >
+                	<apex:inputCheckbox value="{!objm.isChecked}" />
+                </apex:column>
+            	<apex:column value="{!objm.con.Name}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons rendered="{!objModels.size>0}">
+            	<apex:commandButton value="Copy To" action="{!toCopy}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

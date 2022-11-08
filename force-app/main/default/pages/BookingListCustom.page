@@ -1,0 +1,29 @@
+<apex:page title="Booking List Custom" controller="BookingListController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!demo}" var="book">
+                <apex:column headerValue="Action"> 
+                    <apex:commandLink value="Edit" action="/apex/AddBooking?bid={!book.Id}" /> | 
+                         <!--<apex:param name="bid" value="{!book.Id}" assignTo="{!bid}" />--> 
+                    <apex:commandLink value="View" action="/apex/bookingDetailPage?bid={!book.Id}" />
+                        <!--<apex:param name="bid" value="{!book.Id}" assignTo="{!BookingController.bid}" />-->
+                </apex:column>
+                <apex:column value="{!book.Customer__c}" />
+                <apex:column value="{!book.Customer_Email__c}" />
+                <apex:column value="{!book.Room_No__c}" />
+                <apex:column value="{!book.Status__c}" />
+                <apex:column value="{!book.Check_In_Time__c}" />
+                <apex:column value="{!book.Check_Out_Time__c}" />
+                <apex:column value="{!book.Total_Hours__c}" />
+                <apex:column value="{!book.Amount__c}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="New Booking" action="/apex/AddMultipleBooking" />
+                <apex:commandButton value="First" action="{!Beginning}" />
+                <apex:commandButton value="Previous" action="{!MyPrevious}" />
+                <apex:commandButton value="Next" action="{!MyNext}" />
+                <apex:commandButton value="Last" action="{!End}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

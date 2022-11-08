@@ -1,0 +1,13 @@
+<template>
+    <lightning-card
+        title="Forecast"
+        icon-name="standard:account">
+        <template if:true={account.data}>
+            <div class="slds-m-around_medium" align="center">
+               <h1 style="font-size:30px" >{forecast}</h1>
+               <img src={forecastIcon}/><br/>
+               <h2 style="font-size:30px" >{forecastTemperature}<sup>o</sup></h2>
+            </div>
+        </template>
+    </lightning-card>
+</template>

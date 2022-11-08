@@ -1,0 +1,20 @@
+<template>
+	<div class="addBorder" if:true={showSecondComponent}>
+		<div class="slds-grid slds-gutters">
+			<div class="slds-col slds-size_1-of-7">
+				<lightning-icon icon-name={selectedTravelMode} class="slds-m-around_large">
+				</lightning-icon>
+			</div>
+			<div class="slds-col slds-size_3-of-7 slds-m-around_large">
+				<b><span if:true={isDisplayTime}>via</span> {routeName}</b>
+				<p if:true={isDisplayTime}>
+					Fastest route, despite the usual traffic
+				</p>
+			</div>
+			<div class="slds-col slds-size_3-of-7 slds-m-around_large" if:true={isDisplayTime}>
+				<p style="color:orange" ><b>{totalTime}</b></p>
+				<p>{totalDistance} km</p>
+			</div>
+		</div>
+	</div>
+</template>

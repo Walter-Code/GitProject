@@ -1,0 +1,16 @@
+<apex:page controller="SaloniController">
+    <apex:form id="frm">
+        <apex:actionFunction name="fetchStates" action="{!fetchStates}" reRender="frm" />
+    	<apex:pageblock >   
+            	Countries:
+        	<apex:selectList size="1" value="{!selectedcountry}" onchange="fetchStates(); ">
+            	<apex:selectoptions value="{!countries}" ></apex:selectoptions>
+            </apex:selectList>
+            <!--	states:
+            	<apex:selectList size="1" value="{!selectedstate}" >
+            	<apex:selectoptions value="{!states}" ></apex:selectoptions>
+            </apex:selectList>	-->
+           
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

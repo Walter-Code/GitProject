@@ -1,0 +1,21 @@
+<template>
+    <lightning-card title="Parent Component">
+        <div class="slds-grid slds-gutters">
+            <lightning-combobox
+            placeholder="Select Country"
+            label ="Status"
+            value={value}
+            options={options}
+            onchange={handleChange}
+            class="slds-col slds-size_2-of-3 slds-m-around_large">
+            </lightning-combobox>
+        <lightning-button label="Show" onclick={show} 
+        class="slds-col slds-size_2-of-3 slds-m-top_xx-large"></lightning-button>
+        </div>
+
+        <div if:true={isVisible} >
+            <div id="channext-banners" data-width="100%" data-height="300" data-source="https://content.channext.com/resellers/127/banners/1678"></div>
+        </div>
+        <c-p2c-child-component-assignment selectedcountry={value}></c-p2c-child-component-assignment>
+    </lightning-card>
+</template>

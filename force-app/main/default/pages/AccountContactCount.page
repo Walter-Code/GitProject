@@ -1,0 +1,10 @@
+<apex:page controller="AccountContactCountController" title="AccountContactCount">
+    <apex:form >
+    	<apex:pageBlock >
+        	<apex:pageBlockTable value="{!accountContactMap}" var="accConModel">
+            	<apex:column value="{!accountContactMap[accConModel].acc.Name}"/>
+                <apex:column headerValue="Total Contacts" value="{!accountContactMap[accConModel].totalContacts}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

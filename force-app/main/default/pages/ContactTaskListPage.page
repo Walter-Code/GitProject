@@ -1,0 +1,21 @@
+<apex:page controller="ContactTaskListController">
+    <apex:pageMessages />
+    <apex:form >
+    <apex:pageBlock >
+    	<apex:pageBlockTable value="{!tasks}" var="task">
+            <apex:column headerValue="Action">
+                <input type="checkbox" value="{!task.Id}" name="{!task.Id}" />
+            </apex:column>
+            <apex:column headerValue="Assigned To">
+                <apex:inputField value="{!task.OwnerId}" />
+            </apex:column>
+            <apex:column headerValue="Related To">
+            	<apex:inputField value="{!task.WhatId}" />
+            </apex:column>
+        </apex:pageBlockTable>
+        <apex:pageBlockButtons >
+        	<apex:commandButton value="Save" action="{!save}" />
+        </apex:pageBlockButtons>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

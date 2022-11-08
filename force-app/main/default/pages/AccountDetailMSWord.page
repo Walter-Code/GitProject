@@ -1,0 +1,20 @@
+<apex:page standardController="Account" contentType="application/msword#myDocument.doc">
+    <apex:pageBlock >
+        <div>
+            <img src="https://ibirdssoftwareservices7-dev-ed--c.visualforce.com/resource/1613127183000/PDF_Icon" />            
+           	<center>
+                    Welcome to iBirds Software Service <br/>
+                    Salesforce Batch Jan 2021
+                
+            </center>
+        </div>                
+        <div>            
+			<label>Name : </label>
+            <span>{!Account.Name}</span>
+        </div>
+        <div>
+            <label>Phone : </label>
+            <span>{!Account.Phone}</span>
+        </div>
+    </apex:pageBlock>
+</apex:page>

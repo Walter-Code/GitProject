@@ -1,0 +1,49 @@
+<apex:page controller="CountryAssignmentController">
+    <apex:form id="list">
+        <apex:pageBlock rendered="{!editChecked}">
+        	<apex:pageBlockTable value="{!editCountries}" var="editCon">
+                <apex:column headerValue="Country">
+                	<apex:inputField value="{!editCountries[editCon].Name}" />
+                </apex:column>
+                <apex:column headerValue="State">
+                	<apex:inputField value="{!editCountries[editCon].State__c}" />
+                </apex:column>
+                <apex:column headerValue="City">
+                	<apex:inputField value="{!editCountries[editCon].City__c}" />
+                </apex:column>
+            </apex:pageBlockTable>
+			<apex:commandButton value="Save" action="{!saveMultipleEdit}" reRender="list" />
+        </apex:pageBlock>
+        <apex:actionFunction reRender="list" name="changeStatus" />
+        <apex:pageBlock >
+            <apex:pageBlockSection id="frm" >
+                <apex:inputField value="{!addCountry.Name}" />
+                <apex:inputField value="{!addCountry.State__c}" />
+                <apex:inputField value="{!addCountry.City__c}" />
+            </apex:pageBlockSection>
+            <apex:commandButton value="Save" action="{!save}" reRender="list" />
+        </apex:pageBlock>
+        <apex:pageBlock >
+        	<apex:pageBlockTable value="{!countries}" var="con">
+                <apex:column headerValue="Sr.No"><apex:outputText value="{!con.srno}" /></apex:column>
+                <apex:column ><apex:inputCheckbox value="{!con.isChecked}" onchange="changeStatus();" /></apex:column>
+            	<apex:column value="{!con.Country.Name}" headerValue="Country Name" />
+                <apex:column value="{!con.Country.State__c}" headerValue="State" />
+                <apex:column value="{!con.Country.City__c}" headerValue="City" />
+                <apex:column headerValue="Action">
+                    <apex:commandLink value="Edit" reRender="frm" action="{!editRecord}">
+                    	<apex:param assignTo="{!tempSno}" name="tempId" value="{!con.srno}" />
+                    </apex:commandLink> ||
+                    <apex:commandLink value="Delete" action="{!deleteRecord}" reRender="list">
+                    	<apex:param assignTo="{!tempSno}" name="tempsno" value="{!con.srno}" />
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Submit" action="{!submit}" />
+                <apex:commandButton value="Delete" action="{!multipleDelete}" reRender="list" />
+                <apex:commandButton value="Edit" action="{!multipleEdit}" reRender="list" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,15 @@
+<apex:page controller="ContactTaskDemoController" >
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:outputField value="{!con.AccountId}" />
+                <apex:outputField value="{!con.Birthdate}" />
+                <apex:outputField value="{!con.Email}" />
+                <apex:outputField value="{!con.Fax}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Assign Task" action="/apex/ContactTaskListPage?cid={!con.Id}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

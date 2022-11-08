@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Contact List">
+        <lightning-combobox
+            label="Select City"
+            options={cities}
+            value={selectedCity}
+            onchange={handleChange}
+        >
+
+        </lightning-combobox>
+        <lightning-datatable if:true={contactList}
+            key-field="id"
+            data={contactList}
+            columns={columns}>
+        </lightning-datatable>
+    </lightning-card>
+</template>

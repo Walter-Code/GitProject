@@ -1,0 +1,11 @@
+<template>
+    <lightning-card title="Parent Component">
+        <section if:true={showSection} class="slds-m-around_large">
+            <b>Countries : </b>{countries}<br/>
+            <b>Total : </b>{count}
+        </section>
+        <section>
+            <c-c2p-child-component-assignment onshowdetails={showDetails}></c-c2p-child-component-assignment>
+        </section>
+    </lightning-card>
+</template>

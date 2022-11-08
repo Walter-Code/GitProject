@@ -1,0 +1,25 @@
+<apex:page controller="AccountListWithContactCountController" lightningStylesheets="true"  >
+    <apex:form id="frm">
+        <apex:actionFunction name="refreshPage" reRender="frm" status="refresh" />
+
+        <apex:pageBlock >
+            <div align="center">
+                <apex:actionStatus id="refresh">
+                    <apex:facet name="start">
+                        <apex:outputPanel >
+                            <apex:image value="{!$Resource.Spinner}" height="40px;" />
+                        </apex:outputPanel>
+                    </apex:facet>
+                </apex:actionStatus>
+            </div>
+            
+            <!--<apex:inputCheckbox value="{!showCount}" onclick="refreshPage();"  /> Show Counts<br/><br/>
+            <apex:pageBlockSection >
+                <apex:pageBlockTable value="{!accountModelList}" var="account">
+                    <apex:column value="{!account.accountObject.Name}" />
+                    <apex:column rendered="{!showCount}" value="{!account.contactCount}" headerValue="Contacts Count" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>-->
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

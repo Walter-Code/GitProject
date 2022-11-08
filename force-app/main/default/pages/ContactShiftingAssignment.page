@@ -1,0 +1,36 @@
+<apex:page standardController="Account" extensions="ContactShiftingAssignmentController">
+    <apex:form id="frm">
+        <apex:actionFunction reRender="frm" name="checkAll" action="{!checkAll}" />
+        <apex:actionFunction reRender="frm" name="checkAll2" action="{!checkAll2}" />
+        <apex:actionFunction reRender="frm" name="changeMasterCheck" action="{!changeMasterCheck}" />
+        <apex:actionFunction reRender="frm" name="changeMasterCheck2" action="{!changeMasterCheck2}" />
+    	<apex:pageBlock >
+        	<apex:pageBlockSection >
+            	<apex:pageBlockTable value="{!contactRelatedModels}" var="cm">
+                    <apex:column >
+                        <apex:facet name="header">
+                        	<apex:inputCheckbox value="{!masterCheck}" onchange="checkAll();" />
+                        </apex:facet>
+                    	<apex:inputCheckbox value="{!cm.isChecked}" onchange="changeMasterCheck();" />
+                    </apex:column>
+                    <apex:column value="{!cm.con.Name}" headerValue="Name" />
+                </apex:pageBlockTable>
+                <apex:pageBlockTable value="{!contactNotRelatedModels}" var="cm">
+                    <apex:column >
+                        <apex:facet name="header">
+                        	<apex:inputCheckbox value="{!masterCheck2}" onchange="checkAll2();" />
+                        </apex:facet>
+                    	<apex:inputCheckbox value="{!cm.isChecked}" onchange="changeMasterCheck2();" />
+                    </apex:column>
+                    <apex:column value="{!cm.con.Name}" headerValue="Name" />
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection >
+            	<apex:commandButton value="Remove" action="{!removeId}" />
+                <apex:commandButton value="Add" action="{!addId}" />
+            </apex:pageBlockSection>
+            
+            <apex:commandButton value="Submit" action="{!submit}" />
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

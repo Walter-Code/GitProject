@@ -1,0 +1,17 @@
+<apex:page title="Account List Task" controller="ContactTaskController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!attachmentList}" var="atc">
+                <apex:column value="{!atc.con.Name}" />
+                <apex:column value="{!atc.con.AccountId}" />
+                <apex:column value="{!atc.con.Birthdate}" />
+                <apex:column value="{!atc.con.Email}" />
+                <apex:column value="{!atc.con.Fax}" />
+                <apex:column headerValue="Attachments">
+                    <apex:image url="/servlet/servlet.FileDownload?file={!atc.attach.Id}" height="50" rendered="{!atc.urlExists}" />
+                	<apex:image value="{!$Resource.Default_Image}" height="50" rendered="{!!atc.urlExists}" />
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,20 @@
+<apex:page title="Add Booking" controller="BookingController">
+    <apex:pageMessages />
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:inputField value="{!booking.Customer__c}" />
+                <apex:inputField value="{!booking.Customer_Email__c}" />
+                <apex:inputField value="{!booking.Room_No__c}" />
+                <apex:inputField value="{!booking.Status__c}" />
+                <apex:inputField value="{!booking.Check_In_Time__c}" />
+                <apex:inputField value="{!booking.Check_Out_Time__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Save & New" action="{!saveAndNew}" />
+                <apex:commandButton value="Cancel" action="/apex/BookingListCustom" immediate="true" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

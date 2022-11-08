@@ -1,0 +1,51 @@
+<apex:page controller="contactController" >
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form id="frm">
+        <apex:pageBlock >
+            <apex:actionStatus id="contactStatus" startText="Please Wait....." startStyle="color:red; font-weight:bold" />
+            <apex:pageBlockSection rendered="{!cloneSelected}">
+            	<apex:inputField value="{!contact.FirstName}" />
+                <apex:inputField value="{!contact.LastName}" />
+                <apex:inputField value="{!contact.Fax}" />
+                <apex:inputField value="{!contact.Email}" />
+            </apex:pageBlockSection><br/><br/>
+			<apex:actionFunction reRender="frm" name="changeStatus" action="{!changeMasterCheck}" />
+       		<apex:actionFunction reRender="frm" name="refreshpage" action="{!cancel}" />
+            <apex:actionFunction reRender="frm" name="masterCheck" action="{!checkAll}" />
+            <apex:actionStatus id="deleteStatus" startText="Please Wait....."  startStyle="color:red; font-weight:bold"  />
+            <apex:pageBlockTable value="{!contactModels}" var="cm">
+                <apex:column value="{!cm.SrNo}" headerValue="S.No" />
+                <apex:column >
+                    <apex:facet name="header">
+						<apex:inputCheckbox value="{!masterCheck}" onchange="masterCheck();"/>
+					</apex:facet>
+                    <apex:inputCheckbox value="{!cm.isSelected}" onchange="changeStatus();"/>
+                </apex:column>
+                <apex:column headerValue="Action">
+                    <apex:commandLink value="Clone" action="{!cloneRecord}" Rerender="frm" status="contactStatus">
+                        <apex:param assignTo="{!cloneContact}" name="deleteContact" value="{!cm.con.Id}" />
+                    </apex:commandLink>||
+                    <apex:commandLink value="Delete" action="{!deleteRecord}" reRender="frm" status="deleteStatus">
+                        <apex:param assignTo="{!deleteContact}" name="deleteContact" value="{!cm.con.Id}" />
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column headerValue="Name">
+                    <apex:outputText value="{!cm.con.FirstName}" rendered="{!!cm.isSelected}" />
+                    <apex:inputField rendered="{!cm.isSelected}"  value="{!cm.con.FirstName}" />
+                </apex:column>
+                <apex:column headerValue="Fax">
+                    <apex:outputText rendered="{!!cm.isSelected}"  value="{!cm.con.Fax}" />
+                    <apex:inputField rendered="{!cm.isSelected}"  value="{!cm.con.Fax}" />
+                </apex:column>
+                <apex:column headerValue="Email">
+                    <apex:outputText rendered="{!!cm.isSelected}"  value="{!cm.con.Email}" />
+                    <apex:inputText rendered="{!cm.isSelected}"  value="{!cm.con.Email}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Cancel" onclick="refreshpage();" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

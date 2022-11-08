@@ -1,0 +1,27 @@
+<apex:page title="Account List" standardController="Account" recordSetVar="Accounts">
+    <apex:form >
+    	<apex:sectionHeader title="Account List" />
+        <apex:pageBlock >
+        	<apex:pageBlockTable value="{!Accounts}" var="act">
+            	<apex:column headerValue="Name">
+                    <apex:commandLink value="{!act.Name}" action="/apex/AccountDetail?Id={!act.Id}" />
+                </apex:column>
+                <apex:column value="{!act.AccountNumber}" />
+                <apex:column value="{!act.Gender__c}" />
+                <apex:column value="{!act.Email__c}" />
+                <apex:column value="{!act.Address__c}" />
+                <apex:column value="{!act.Phone}" />
+                <apex:column value="{!act.Salary__c}" />
+                <apex:column value="{!act.AnnualRevenue}" />
+                <apex:column value="{!act.Fax}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="New Account" action="/apex/NewAccount" /> 
+            	<apex:commandButton value="First" action="{!first}" />
+                <apex:commandButton value="Previous" action="{!previous}" />
+                <apex:commandButton value="Next" action="{!next}" />
+                <apex:commandButton value="Last" action="{!last}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

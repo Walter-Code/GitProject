@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="QuerySelector">
+        <div class="slds-m-around_medium">I'm Trying to execute query Selector</div>
+        <lightning-button class="slds-m-around_medium" label="Click Me" onclick={clickFun}></lightning-button><br/><br/>
+        <template for:each={arr} for:item="person">
+            <div class="slds-m-around_x-small child" key={person}>{person}</div>
+        </template>
+        <div class="slds-m-around_medium myClass" lwc:dom="manual">
+
+        </div>
+    </lightning-card>
+
+    <lightning-card title="CSS">
+        <div class="slds-grid">
+            <div class="slds-size_2-of-3 slds-m-around_xx-small" style="background-color:red" >Vishal</div>
+            <div class="slds-size_1-of-3 slds-m-around_xx-small" style="background-color:yellow">Chandnani</div>
+        </div>
+    </lightning-card>
+</template>

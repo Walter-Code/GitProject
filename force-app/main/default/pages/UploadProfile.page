@@ -1,0 +1,23 @@
+<apex:page standardController="Contact" extensions="UploadProfileController">
+	<apex:form >
+    	<apex:pageBlock >
+            <apex:pageBlockTable value="{!showAttachment}" var="attach">
+                <apex:column >
+                	<apex:image url="/servlet/servlet.FileDownload?file={!attach.Id}" rendered="{!showAttachment.size>0}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:image value="{!$Resource.Default_Image}" rendered="{!showAttachment.size==0}"/>
+            <apex:inputFile value="{!att.Body}" fileName="{!att.Name}" contentType="{!att.ContentType}" />
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        
+        <script>
+            if("{!att.Id}" != ""){
+                window.parent.location.href="/{!att.parentId}"
+            }
+        </script>
+    </apex:form>
+</apex:page>

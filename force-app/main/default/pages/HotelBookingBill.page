@@ -1,0 +1,31 @@
+<apex:page standardController="Booking__c" extensions="HotelBookingBillController" renderAs="{!renderValue}">
+    <apex:pageBlock >
+        <apex:form >
+            <div>
+                <img src="/resource/1613127183000/PDF_Icon" height="100" width="120" /><br/><br/>
+            </div><br/><br/>
+            <div>
+                <h1>INVOICE</h1>
+            </div>
+            <hr/>
+            <h3>Booking Invoice : {!Booking__c.Name}</h3><br/><br/>
+            <table border="2px" cellpadding="5px" width="100%">
+                <tr>
+                    <th>Room No</th>
+                    <th>Check In Time</th>
+                    <th>Check Out Time</th>
+                    <th>Amount</th>
+                </tr>
+                <tr>
+                    <td>{!Booking__c.Room_No__c}</td>
+                    <td>{!Booking__c.Check_In_Time__c}</td>
+                    <td>{!Booking__c.Check_Out_Time__c}</td>
+                    <td>{!Booking__c.Amount1__c}</td>
+                </tr>
+            </table><br/><br/>
+            <div align="center">
+                <apex:commandButton value="Download" action="{!downloadClick}" />
+            </div>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

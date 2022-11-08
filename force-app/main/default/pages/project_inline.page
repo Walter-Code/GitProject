@@ -1,0 +1,10 @@
+<apex:page standardController="Project__c" extensions="ProjectInlineController">
+    <apex:slds />
+    <div class="slds-scope">
+        <div class="slds-progress-indicator slds-progress-indicator" role="progress-indicator">
+            <span class="slds-progress-bar__value" style="width:50%">
+                <span class="slds-assistive-text">Progress: 50%</span>
+            </span>
+        </div>
+    </div>
+</apex:page>

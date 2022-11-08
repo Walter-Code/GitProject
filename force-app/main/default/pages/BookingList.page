@@ -1,0 +1,27 @@
+<apex:page title="Booking List" standardController="Booking__c" recordSetVar="Bookings">
+    <apex:form >
+        <apex:pageBlock title="Booking List">
+            <apex:pageBlockTable value="{!Bookings}" var="book">
+                <apex:column headerValue="Action"> 
+                    <apex:commandLink value="Edit" action="/apex/AddBooking?bid={!book.Id}" /> | 
+                    |  <apex:commandLink value="View" action="/apex/bookingDetailPage?bid={!book.Id}" />
+                </apex:column>
+                <apex:column value="{!book.Customer__c}" />
+                <apex:column value="{!book.Customer_Email__c}" />
+                <apex:column value="{!book.Room_No__c}" />
+                <apex:column value="{!book.Status__c}" />
+                <apex:column value="{!book.Check_In_Time__c}" />
+                <apex:column value="{!book.Check_Out_Time__c}" />
+                <apex:column value="{!book.Total_Hours__c}" />
+                <apex:column value="{!book.Amount__c}" />
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="New Booking" action="/apex/AddBooking" />
+                <apex:commandButton value="First" action="{!first}" />
+                <apex:commandButton value="Previous" action="{!previous}" />
+                <apex:commandButton value="Next" action="{!next}" />
+                <apex:commandButton value="Last" action="{!last}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

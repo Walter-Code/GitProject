@@ -1,0 +1,13 @@
+<template>
+    <lightning-card title="New Account" class="slds-m-around_medium">
+        <div class="slds-m-around_medium">
+            <lightning-input label="Id" if:true={newAcc.Id} value={newAcc.Id} disabled="true"></lightning-input>
+            <lightning-input label="Name" value={newAcc.Name} ></lightning-input>
+            <lightning-input label="Phone" value={newAcc.Phone} ></lightning-input>
+            <lightning-input label="BillingCity" value={newAcc.BillingCity} ></lightning-input><br/>
+            <lightning-button label="New Account" disabled={newAccountBtn} class="slds-m-right_large slds-m-left_small" 
+            onclick={newAccountClick} variant="Brand"></lightning-button>
+            <lightning-button label="Save" onclick={saveClick} disabled={saveBtn} variant="Success"></lightning-button>    
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,21 @@
+<apex:page controller="ContactsSearchController" tabStyle="Contact" lightningStylesheets="true">
+    <apex:form id="frm">
+        <apex:sectionHeader title="Contacts" subtitle="Search" />
+        <apex:pageBlock >
+            
+            <apex:inputText value="{!searchValue}" html-placeholder="Search" style="margin-left:30px;" />
+            <apex:commandButton value="Search" action="{!searchContacts}" reRender="frm" status="searching" style="margin-left:10px;" /><br/><br/>
+            
+            <apex:actionStatus id="searching" startText="Please Wait......" startStyle="color:green; font-size:15px;" />
+            
+            <apex:pageBlockTable value="{!contactList}" var="con">
+                <apex:column value="{!con.Name}" />
+                <apex:column value="{!con.Email}" />
+                <apex:column value="{!con.Account.Name}" />
+                <apex:column value="{!con.Phone}" />
+                <apex:column value="{!con.Type__c}" />
+            </apex:pageBlockTable>
+            <b><apex:outputText value="No Records Found" rendered="{!contactList.size == 0}" /></b>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

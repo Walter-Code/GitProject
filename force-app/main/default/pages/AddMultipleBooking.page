@@ -1,0 +1,33 @@
+<apex:page title="Add Multiple Booking" controller="BookingController">
+    <apex:form >
+        <apex:pageMessages />
+        <apex:pageBlock title="New Booking">
+            <apex:pageBlockTable value="{!multipleBookings}" var="booking">
+                <apex:column headerValue="Customer">
+                    <apex:inputField value="{!booking.Customer__c}" />
+                </apex:column>
+                <apex:column headerValue="Customer Email">
+                    <apex:inputField value="{!booking.Customer_Email__c}" />
+                </apex:column>
+                <apex:column headerValue="Room No" >
+                    <apex:inputField value="{!booking.Room_No__c}" />
+                </apex:column>
+                <apex:column headerValue="Status">
+                    <apex:inputField value="{!booking.Status__c}" />
+                </apex:column>
+                <apex:column headerValue="Check Out Time">
+                    <apex:inputField value="{!booking.Check_Out_Time__c}" />
+                </apex:column>
+                <apex:column headerValue="Check In Time">
+                    <apex:inputField value="{!booking.Check_In_Time__c}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Add Row" action="{!AddBooking}" immediate="true" />
+                <apex:commandButton value="Remove Row" action="{!removeBooking}" immediate="true" />
+                <apex:commandButton value="" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

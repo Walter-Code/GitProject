@@ -1,0 +1,20 @@
+<apex:page title="bookingDetailPage" controller="BookingController">
+    <apex:form >
+        <apex:pageBlock title="Booking Information">
+            <apex:pageBlockSection title="Detail">
+                <apex:outputField value="{!booking.Customer__c}" />
+                <apex:outputField value="{!booking.Customer_Email__c}" />
+                <apex:outputField value="{!booking.Room_No__c}" />
+                <apex:outputField value="{!booking.Status__c}" />
+                <apex:outputField value="{!booking.Check_In_Time__c}" />
+                <apex:outputField value="{!booking.Check_Out_Time__c}" />
+                <apex:outputField value="{!booking.Total_Hours__c}" />
+                <apex:outputField value="{!booking.Amount__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Back" action="/apex/BookingListCustom" />
+                <apex:commandButton value="Delete" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

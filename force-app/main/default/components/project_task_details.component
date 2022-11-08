@@ -1,0 +1,23 @@
+<apex:component access="global">
+    <apex:attribute name="selectedObject" type="Project__c" description=""></apex:attribute>
+    <apex:variable value="{!0}" var="SrNo"/>
+    <table border="2px solid black" cellpadding="5px">
+        <tr>
+            <th>Sr.No</th>
+            <th>Project Task Name</th>
+            <th>Creation Date</th>
+            <th>Completion Date</th>
+            <th>Completed By</th>
+        </tr>
+        <apex:repeat value="{!selectedObject.Project_Tasks__r}" var="project">
+            <tr>
+                <apex:variable value="{!SrNo+1}" var="SrNo" />
+                <td>{!SrNo}</td>
+                <td><apex:outputField value="{!project.Type__c}" /></td>
+                <td><apex:outputField value="{!project.CreatedDate}" /></td>
+                <td><apex:outputField value="{!project.Completion_Date__c}" /></td>
+                <td><apex:outputField value="{!project.Owner.Name}" /></td>
+            </tr>
+        </apex:repeat>
+    </table><br/><br/>
+</apex:component>

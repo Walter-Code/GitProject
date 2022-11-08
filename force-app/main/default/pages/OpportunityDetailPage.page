@@ -1,0 +1,11 @@
+<apex:page controller="OpportunityDetailController">
+    <apex:pageBlock >
+    	<apex:pageBlockSection title="Opportunity Detail">
+        	<apex:outputField value="{!OpportunityObj.Name}" />
+            <apex:outputField value="{!OpportunityObj.Amount}" />
+            <apex:outputField value="{!OpportunityObj.Stage_Type__c}" />
+            <apex:outputField value="{!OpportunityObj.OrderNumber__c}" />
+        </apex:pageBlockSection>
+        <c:AccountParentComponent ParentId="{!OpportunityObj.AccountId}" />
+    </apex:pageBlock>
+</apex:page>

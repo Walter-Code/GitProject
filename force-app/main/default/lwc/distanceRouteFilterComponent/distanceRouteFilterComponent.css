@@ -1,0 +1,11 @@
+.btnstyle{
+    margin-bottom: 20px;
+    margin-left : 23px;
+    background : white;
+}
+.btnstyle:hover{
+    background :lightcyan;
+}
+.changeBackground{
+    background-color: #1A73E8;
+}

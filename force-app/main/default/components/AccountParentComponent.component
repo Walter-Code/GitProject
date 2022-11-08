@@ -1,0 +1,10 @@
+<apex:component controller="AccountParentController" >
+    <apex:attribute name="parentId" type="Id" description="" assignTo="{!accId}" required="true" />
+    <apex:pageBlockSection title="Account Detail">
+    	<apex:outputField value="{!AccountDetail.Name}" />
+        <apex:outputField value="{!AccountDetail.Phone}" />
+        <apex:outputField value="{!AccountDetail.Fax}" />
+        <apex:outputField value="{!AccountDetail.Website}" />
+        <apex:outputField value="{!AccountDetail.Type}" />
+    </apex:pageBlockSection>
+</apex:component>

@@ -1,0 +1,24 @@
+<apex:page title="Contact List With Attachments" controller="ContactAttachmentMapController">
+    <apex:form >
+        
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!contactModelMap}" var="atc">
+                <apex:column value="{!contactModelMap[atc].con.Name}" />
+                <apex:column value="{!contactModelMap[atc].con.AccountId}" />
+                <apex:column value="{!contactModelMap[atc].con.Birthdate}" />
+                <apex:column value="{!contactModelMap[atc].con.Email}" />
+                <apex:column value="{!contactModelMap[atc].con.Fax}" />
+                <apex:column headerValue="Add Attachment"> 
+					<apex:inputFile value="{!ContactModelMap[atc].attachment.Body}" fileName="{!ContactModelMap[atc].attachment.Name}" /> 
+				</apex:column>
+                <apex:column headerValue="Attachments">
+                    <apex:image url="/servlet/servlet.FileDownload?file={!ContactModelMap[atc].att.Id}" height="50" width="50" rendered="{!ContactModelMap[atc].isUrlExists}" />
+                	<apex:image value="{!$Resource.Default_Image}" height="50" width="50" rendered="{!!ContactModelMap[atc].isUrlExists}" />
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+            	<apex:commandButton value="Save" action="{!save}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

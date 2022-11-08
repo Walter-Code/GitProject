@@ -1,0 +1,22 @@
+<apex:page controller="CountryController" >
+    <apex:form id="frm">
+        <apex:actionStatus id="countryStatus" startText="Please Wait...." startStyle="color:red; font-weight:bold" />
+        <apex:pageBlock >
+            <apex:actionFunction action="{!fetchStates}" reRender="frm" name="fetchStates" status="countryStatus" />
+            <apex:actionFunction action="{!fetchCities}" reRender="city" name="fetchCities" status="countryStatus" />
+            
+            <apex:selectList size="1" value="{!selectedCountry}" onchange="fetchStates();">
+                Country:
+                <apex:selectOptions value="{!countryOptions}"></apex:selectOptions>
+            </apex:selectList><br/><br/><br/>
+            <apex:selectList size="1" value="{!selectedState}" onchange="fetchCities();">
+                State:
+                <apex:selectOptions value="{!stateOptions}" ></apex:selectOptions>
+            </apex:selectList><br/><br/><br/>
+            <apex:selectList size="1" id="city">
+                City:
+                <apex:selectOptions value="{!cityOptions}"></apex:selectOptions>
+            </apex:selectList>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

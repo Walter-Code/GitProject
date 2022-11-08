@@ -1,0 +1,14 @@
+<apex:page controller="OpportunityAssignmentController">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockTable value="{!opportunityModels}" var="opp">
+            	<apex:column value="{!opp.StageName}" headerValue="StageName" />
+                <apex:column value="{!opp.sumAmount}" headerValue="Sum" />
+                <apex:column value="{!opp.maxAmount}" headerValue="Max" />
+                <apex:column value="{!opp.minAmount}" headerValue="Min" />
+                <apex:column value="{!opp.avgAmount}" headerValue="Avg" />
+                <apex:column value="{!opp.countRecord}" headerValue="Count Of Records" />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

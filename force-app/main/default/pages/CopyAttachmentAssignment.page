@@ -1,0 +1,149 @@
+<apex:page controller="CopyAttachmentAssignmentController" title="Copy Attachments">
+    <apex:form id="frm">
+      	<apex:pageMessages ></apex:pageMessages>
+        <!--------------------------------------Action Functions------------------------------------>
+        
+        <apex:outputPanel styleClass="popupBackground" rendered="{!showPop}"/>
+        <apex:actionFunction reRender="frm" name="getAttachments" action="{!getAttachments}" status="loadingAttachments" />
+        <apex:actionFunction reRender="popup" name="showSearchButton" action="{!showSearchButton}" status="loadingRecords" />
+        <apex:actionFunction name="checkAllAttachments" reRender="frm" action="{!checkAllAttachments}" />
+        <apex:actionFunction name="checkAllRecords" reRender="records" action="{!checkAllRecords}" />
+        
+        <apex:actionFunction name="changeMasterCheckAttachment" action="{!changeMasterCheckAttachment}" reRender="refreshMasterCheck" />
+        <apex:actionFunction name="changeMasterCheckRecord" action="{!changeMasterCheckRecord}" reRender="refreshMasterCheckRecord" />
+        
+        
+        <!-----------------------------------------First Select List------------------------------->
+        <apex:pageBlock >
+            <apex:actionStatus id="popupStatus" startStyle="color:green; font-size:30px" startText="Please Wait.....!!!" />
+            <apex:pageBlockSection title="Select Object">
+                <apex:selectList size="1" value="{!selectedObject}" onchange="getAttachments();">
+                    <apex:selectOptions value="{!objects}"/>
+                </apex:selectList>
+            </apex:pageBlockSection>
+      		
+            
+            <!-----------------------------------------Attachment List------------------------------->
+            <apex:actionStatus id="loadingAttachments" startText="Please Wait While we are loading Attachments for You......!!!" startStyle="color:red; font-weight:bold" />
+            <div style = "overflow : auto; height : auto; max-height : 300px;">
+            <apex:pageBlockTable value="{!attachmentModels}" var="att" rendered="{!attachmentModels.size > 0}">
+                <apex:column headerValue="Preview">
+                	<apex:commandLink onclick="window.open('/servlet/servlet.FileDownload?file={!att.attach.Id}')" value="Preview" />
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                    	<apex:inputCheckbox value="{!masterCheckAttachment}" id="refreshMasterCheck" onchange="checkAllAttachments();" />
+                    </apex:facet>
+                    <apex:inputCheckbox value="{!att.isChecked}" onchange="changeMasterCheckAttachment();" />
+                </apex:column>
+                <apex:column value="{!att.attach.Name}" />
+                <apex:column value="{!att.attach.ContentType}" />
+                <apex:column headerValue="Attachment File">
+                    <apex:image url="/servlet/servlet.FileDownload?file={!att.attach.Id}" rendered="{!att.attach.ContentType = 'image/jpeg' || 
+                                                                                                    att.attach.ContentType = 'image/png'}" height="50" width="50" />
+                    <apex:image value="{!$Resource.Text_Icon}" height="50" width="50" rendered="{!att.attach.ContentType = 'text/plain'}" />
+                    <apex:image value="{!$Resource.PDF_Icon}" height="50" width="50" rendered="{!att.attach.ContentType = 'application/pdf'}" />
+                    <apex:image value="{!$Resource.Word_Icon}" height="50" width="50" rendered="{!att.attach.ContentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'}" />
+                    <apex:image value="{!$Resource.Excel_Icon}" height="50" width="50" rendered="{!att.attach.ContentType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}" />
+                    <apex:image value="{!$Resource.No_Icon}" height="50" width="50"
+                                rendered="{!att.attach.ContentType != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' && 
+                                          att.attach.ContentType != 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' && 
+                                          att.attach.ContentType != 'text/plain' && 
+                                          att.attach.ContentType != 'image/jpeg' && 
+                                          att.attach.ContentType != 'image/png'  &&
+                                          att.attach.ContentType != 'application/pdf'}"  />
+                </apex:column>
+            </apex:pageBlockTable>
+            </div>
+            <apex:pageBlockButtons rendered="{!attachmentModels.size > 0}">
+            	<apex:commandButton value="Copy To" action="{!showPopUp}" reRender="frm" status="popupStatus" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <!-----------------------------------------Second Select List------------------------------->
+        <apex:pageBlock rendered="{!attachmentModels.size > 0}">
+            <apex:outputPanel rendered="{!showPop}" styleClass="customPopup" layout="block" id="popup">
+                <apex:pageBlockSection title="Select Object To Fetch Records" columns="3">
+                    <apex:pageBlockSectionItem >
+                        <apex:selectList size="1" value="{!selectedObjectDemo}" styleClass="listStyling" onchange="showSearchButton();" rendered="{!attachmentModels.size > 0}">
+                            <apex:selectOptions value="{!objects}"/>
+                        </apex:selectList>
+                    </apex:pageBlockSectionItem>
+                    <!-----------------------------------------Search Button------------------------------->
+                    <apex:pageBlockSectionItem rendered="{!isSearch}">
+                        <apex:inputText value="{!searchName}" />
+                        <apex:commandButton value="Search" action="{!searchRecord}" reRender="records" status="search" />
+                    </apex:pageBlockSectionItem>
+                    <apex:pageBlockSectionItem >
+                    	<apex:commandButton value="close" action="{!hidePopup}" reRender="frm" />
+                    </apex:pageBlockSectionItem>
+                </apex:pageBlockSection>
+                
+                <apex:outputPanel id="records" >
+                    <apex:actionStatus id="search" startText="Searching....." startStyle="font-size:20px;" />
+                    <apex:pageBlock rendered="{!showList}" >
+                        
+                        <!-----------------------------------------Records List------------------------------->
+                        <apex:actionStatus id="loadingRecords" startText="Please Wait While we are loading Records for You......!!!" startStyle="color:red; font-weight:bold" />
+                        <div style = "overflow : auto; height : auto; max-height : 100px;" id = "models">
+                            <apex:pageBlockTable value="{!objModels}" var="objm" rendered="{!objModels.size>0}">
+                                <apex:column >
+                                    <apex:facet name="header">
+                                        <apex:inputCheckbox value="{!masterCheckRecord}" onchange="checkAllRecords();" id="refreshMasterCheckRecord" />
+                                    </apex:facet>
+                                    <apex:inputCheckbox value="{!objm.isChecked}" onchange="changeMasterCheckRecord();" />
+                                </apex:column>
+                                <apex:column value="{!objm.Name}" headerValue="Account Name" />
+                            </apex:pageBlockTable>
+                        </div>
+                        <apex:pageBlockButtons >
+                            <apex:commandButton value="Submit" action="{!toCopy}" rendered="{!objModels.size>0}" />
+                        </apex:pageBlockButtons>
+                    </apex:pageBlock>   
+                </apex:outputPanel>
+            </apex:outputPanel>
+            
+            
+        </apex:pageBlock>
+    </apex:form>
+   
+    
+    <style type="text/css">
+        .customPopup {
+  		-webkit-animation: fadeIn 2s;
+        overflow : auto;
+        background-color: white;
+        border-style: solid;
+        border-width: 2px;
+        left: 30%;
+        padding: 10px;
+        position: absolute;
+        width: 500px;
+        top: 10%;
+        }
+        
+        .popupBackground{
+            background-color:black;
+            opacity: 0.20;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .listStyling{
+        	overflow : auto;
+        }
+        
+        @-webkit-keyframes fadeIn {
+          from {opacity: 0;} 
+          to {opacity: 1;}
+        }
+        
+        /* These are the 3 css properties you will need to tweak so the pop 
+        up displays in the center of the screen. First set the width. Then set 
+        margin-left to negative half of what the width is. You can also add 
+        the height property for a fixed size pop up.*/
+        
+    </style>
+    
+</apex:page>

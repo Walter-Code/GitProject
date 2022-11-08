@@ -1,0 +1,14 @@
+<apex:page title="Demo First" standardController="Student__c">
+    <apex:pageBlock title="Student Information">
+    	<apex:pageBlockSection title="First User" columns="2">
+       		<apex:pageBlockSectionItem >
+            	<apex:outputLabel >First Name</apex:outputLabel>
+                <apex:outputText >{!$User.FirstName}</apex:outputText>
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+            	<apex:outputLabel >Last Name</apex:outputLabel>
+                <apex:outputText >{!$User.LastName}</apex:outputText>
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

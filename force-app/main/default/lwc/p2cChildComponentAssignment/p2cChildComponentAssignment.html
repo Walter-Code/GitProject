@@ -1,0 +1,12 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters" if:true={showComponent}>
+            <img src={countryObj.src} class="slds-col slds-size_1-of-2 slds-m-around_large" style="height:250px; width:250px;">
+            <div class="slds-col slds-size_1-of-2 slds-m-around_large">
+                <b>Country : </b> {selectedcountry}<br/>
+                <b>Capital : </b> {countryObj.capital}<br/>
+                <b>Population : </b> {countryObj.population}
+            </div>
+        </div>
+    </lightning-card>
+</template>

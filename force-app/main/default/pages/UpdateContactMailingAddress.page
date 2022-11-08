@@ -1,0 +1,31 @@
+<apex:page controller="UpdateContactMailingAddressController" >
+	<apex:form id="frm">
+        <apex:actionFunction reRender="frm" action="{!changeAccount}" name="changeAccount" />
+    	<apex:pageBlock >
+            <apex:pageBlockSection columns="1" title="Select Account">
+                <apex:selectList size="1" value="{!tempId}" onchange="changeAccount();">
+                    <apex:selectOptions value="{!accountList}" />
+                </apex:selectList>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection rendered="{!isSelected}" title="Account BillingAddress">
+            	<apex:inputField value="{!account.BillingStreet}" />
+                <apex:inputField value="{!account.BillingCity}" />
+                <apex:inputField value="{!account.BillingState}" />
+                <apex:inputField value="{!account.BillingPostalCode}" />
+                <apex:inputField value="{!account.BillingCountry}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons rendered="{!isSelected}">
+            	<apex:commandButton value="Submit" action="{!submit}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="List Of Contacts" rendered="{!isSubmit}" />
+            <apex:pageBlockTable value="{!contacts}" var="con" rendered="{!isSubmit}">
+            	<apex:column value="{!con.Name}" />
+                <apex:column value="{!con.MailingStreet}" />
+                <apex:column value="{!con.MailingCity}" />
+                <apex:column value="{!con.MailingState}" />
+                <apex:column value="{!con.MailingPostalCode}" />
+                <apex:column value="{!con.MailingCountry}" />
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>    
+</apex:page>
