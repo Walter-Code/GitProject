@@ -4,8 +4,8 @@ public with sharing class AuthenticationDetail{
     //For development and production https://login.salesforce.com/services/oauth2/token
     //And for sandbox https://test.salesforce.com/services/oauth2/token
     private final static String REQUEST_BODY = 'grant_type=password&client_id={0}&client_secret={1}&username={2}&password={3}';
-    private final static String USERNAME = 'akansha.bhatnagar-external@alfuttaim.admin.staging';
-    private final static String PASSWORD = 'Corona@2019xGeXyERzOjNSZF7IrAYLgqSv';
+    private final static String USERNAME = 'test@test .com';
+    private final static String PASSWORD = '78#toy34dRzOjNSZF7IrAYLgqSv';
     private final static String CONSUMER_KEY = '3MVG9RezSyZYLh2vvLft_JPyP6zoFKyiy8c.h.om_QRXaWWKl8zlo5te2XoIbjpiW8VYXZErmlxdRUBtuwm.B';
     private final static String CONSUMER_SECRET = '46050BA0BA556D80846254861FD9F0449FDDE5BC605C02C02F2B1C80A4CC51DB';
     
